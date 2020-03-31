@@ -27,6 +27,17 @@ array[classList,periods] of var allSlots: assignedSlots;
 constraint alldifferent(assignedSlots);
 
 constraint
+forall(r in roomList, d in daysPerWeek, s in slotsPerDay)
+    (
+        if roomRoutine[r,d,s] > 0
+            then teacherRoutine[classDetails[roomRoutine[r,d,s],1],d,s] = roomRoutine[r,d,s]
+        else
+            true
+        endif
+    );
+
+%tested
+constraint
 forall(i in classList,p in periods)
     (
         teacherRoutine[classDetails[i,1],getDay(assignedSlots[i,p]),getSlot(assignedSlots[i,p])] == i
