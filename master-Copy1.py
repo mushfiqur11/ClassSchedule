@@ -15,7 +15,7 @@ def main(argv):
     try:
         source = argv[0]
     except:
-        source = "classDetails2.csv"
+        source = "classDetails.csv"
     
     rooms = 8
     slots = 6
@@ -26,11 +26,9 @@ def main(argv):
 #     data = data[0:36]
 
 
-    classDetails2 = data.to_numpy(dtype=int).tolist()
+    classDetails = data.to_numpy(dtype=int).tolist()
     # print(classDetails)
-    sections1 = max(data["Section1"].to_numpy(dtype=int))
-    sections2 = max(data["Section2"].to_numpy(dtype=int))
-    sections = max(sections1,sections2)
+    sections = max(data["Section"].to_numpy(dtype=int))
     teachers = max(data["Teacher"].to_numpy(dtype=int))
     classes = int(len(data))
     print("Teachers: ",teachers)
@@ -53,12 +51,12 @@ def main(argv):
     newDict["rooms"] = rooms
     newDict["sections"] = sections
     newDict["teachers"] = teachers
-    newDict["classDetails2"] = classDetails2
+    newDict["classDetails"] = classDetails
     newDict["teacherBusy"] = teacherBusy
 
     print("Starting Model")
     start = time.time()
-    newData = pymzn.minizinc(mzn = "master_v7.mzn", data = newDict, solver = pymzn.chuffed)
+    newData = pymzn.minizinc(mzn = "master.mzn", data = newDict, solver = pymzn.chuffed)
     end = time.time()
     print("Total time required to run the model ",end-start)
 
@@ -78,9 +76,9 @@ def main(argv):
     for i in range(5):
         for j in range(6):
             myRoom = 0
-            for k in range(teachers):
-                if teacherRoutine[k][i][j] > 0:
-                    roomRoutine[myRoom][i][j] = teacherRoutine[k][i][j]
+            for k in range(sections):
+                if sectionRoutine[k][i][j] > 0:
+                    roomRoutine[myRoom][i][j] = sectionRoutine[k][i][j]
                     myRoom += 1
     for rooms in roomRoutine:
         for day in rooms:
