@@ -26,7 +26,7 @@ def main(argv):
 #     data = data[0:36]
 
 
-    classDetails2 = data.to_numpy(dtype=int).tolist()
+    classDetails = data.to_numpy(dtype=int).tolist()
     # print(classDetails)
     sections1 = max(data["Section1"].to_numpy(dtype=int))
     sections2 = max(data["Section2"].to_numpy(dtype=int))
@@ -44,7 +44,9 @@ def main(argv):
         tBusy[1,0,i] = 1
 
     teacherBusy = tBusy.astype(int).tolist()
-
+    
+    classCredits = np.ones((classes)) * 3
+    classCredits = classCredits.astype(int).tolist()
 
     newDict = {}
     newDict["days"] = days
@@ -53,8 +55,9 @@ def main(argv):
     newDict["rooms"] = rooms
     newDict["sections"] = sections
     newDict["teachers"] = teachers
-    newDict["classDetails2"] = classDetails2
+    newDict["classDetails"] = classDetails
     newDict["teacherBusy"] = teacherBusy
+    newDict["classCredits"] = classCredits
 
     print("Starting Model")
     start = time.time()
