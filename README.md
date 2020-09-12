@@ -15,3 +15,6 @@
     - `minizinc --solvers` from terminal
 - Install pymzn
     - `pip install pymzn`
+
+## Running the software
+- 
