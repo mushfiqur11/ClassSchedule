@@ -17,4 +17,6 @@
     - `pip install pymzn`
 
 ## Running the software
-- 
+- `master.ipynb` is most updated notebook
+- `master.py` is the corresponding python file
+- `master.mzn` is the primary minizinc contrsaint file
