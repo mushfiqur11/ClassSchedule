@@ -1,4 +1,9 @@
-# Class Scheduling with MiniZinc
+# Automated Large-scale Class Scheduling with MiniZinc
+[[paper]](https://arxiv.org/abs/2011.07507) [[code]](https://github.com/mushfiqur11/ClassSchedule)
+
+- [Md. Mushfiqur Rahman](https://mushfiqur11.github.io)
+- Sabah Binte Noor
+- Fazlul Hasan Siddiqui
 
 ## Pre requisites
 - Install python 3 preferably with [anaconda and jupyter notebook](https://www.anaconda.com/)
